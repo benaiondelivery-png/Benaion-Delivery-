@@ -8,159 +8,127 @@
         :root { --vermelho: #bc0000; --amarelo: #f2b705; --fundo: #f4f4f4; --sucesso: #25d366; }
         body { font-family: 'Arial Black', sans-serif; margin: 0; background: var(--fundo); color: #333; }
         
-        /* Logo Profissional */
-        header { background: var(--vermelho); color: white; padding: 40px 15px; text-align: center; border-bottom: 6px solid var(--amarelo); position: relative; }
-        .logo-main { margin: 0; font-style: italic; color: var(--amarelo); font-size: 3.5rem; line-height: 1; text-shadow: 3px 3px 0px #000; letter-spacing: -2px; transform: skew(-5deg); }
-        .logo-sub { margin: 0; letter-spacing: 8px; font-weight: bold; text-transform: uppercase; font-size: 1rem; color: white; margin-top: -5px; }
+        header { background: var(--vermelho); color: white; padding: 40px 15px; text-align: center; border-bottom: 6px solid var(--amarelo); }
+        .logo-main { margin: 0; font-style: italic; color: var(--amarelo); font-size: 3.2rem; line-height: 1; text-shadow: 3px 3px 0px #000; letter-spacing: -2px; transform: skew(-5deg); cursor: pointer; }
+        .logo-sub { margin: 0; letter-spacing: 6px; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; color: white; margin-top: -5px; }
 
-        /* Status de Funcionamento */
-        .status-bar { text-align: center; padding: 10px; font-weight: bold; font-size: 1.1rem; margin: -15px auto 0; border-radius: 0 0 15px 15px; max-width: 220px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; z-index: 10; }
+        .status-bar { text-align: center; padding: 10px; font-weight: bold; font-size: 1.1rem; margin: -15px auto 0; border-radius: 0 0 15px 15px; max-width: 220px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; }
         .aberto { background: var(--sucesso); color: white; }
         .fechado { background: #555; color: white; }
 
         .container { max-width: 500px; margin: 20px auto; padding: 15px; padding-bottom: 80px; }
         .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 6px solid var(--vermelho); }
-        h3 { color: var(--vermelho); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 1.2rem; text-transform: uppercase; }
+        h3 { color: var(--vermelho); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 1.1rem; text-transform: uppercase; }
         
-        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.85rem; color: #444; text-transform: uppercase; }
-        input, textarea, select { width: 100%; padding: 14px; margin-top: 5px; border: 2px solid #eee; border-radius: 10px; box-sizing: border-box; font-size: 1rem; font-family: sans-serif; }
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.8rem; color: #444; text-transform: uppercase; }
+        /* Campos agora Brancos e Claros */
+        input, textarea, select { width: 100%; padding: 14px; margin-top: 5px; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 1rem; font-family: sans-serif; background: #ffffff !important; color: #000; }
         
-        /* Botões */
-        .btn-enviar { background: var(--sucesso); color: white; border: none; width: 100%; padding: 22px; border-radius: 15px; font-weight: bold; font-size: 1.4rem; cursor: pointer; margin-top: 25px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); transition: 0.2s; }
-        .btn-enviar:active { transform: scale(0.98); }
+        .btn-enviar { background: var(--sucesso); color: white; border: none; width: 100%; padding: 22px; border-radius: 15px; font-weight: bold; font-size: 1.4rem; cursor: pointer; margin-top: 25px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
         
-        .btn-reset { background: transparent; color: #999; border: 1px dashed #ccc; padding: 8px 15px; border-radius: 8px; font-size: 0.7rem; cursor: pointer; margin-top: 10px; font-family: sans-serif; display: block; margin-left: auto; margin-right: auto; }
+        /* Botão de Reset Oculto (Aparece com clique triplo na logo) */
+        #btn-admin { display: none; background: #333; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 8px; margin-top: 10px; font-size: 0.7rem; cursor: pointer; }
         
-        .footer { text-align: center; font-family: sans-serif; font-size: 0.8rem; color: #888; margin-top: 20px; }
+        .footer { text-align: center; font-family: sans-serif; font-size: 0.8rem; color: #888; margin-top: 30px; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-container">
+    <div onclick="ativarAdmin()">
         <h1 class="logo-main">BENAION</h1>
         <p class="logo-sub">DELIVERY</p>
     </div>
 </header>
 
-<div id="status-loja" class="status-bar">Verificando...</div>
+<div id="status-loja" class="status-bar">Carregando...</div>
 
 <div class="container">
-    
     <div class="card">
-        <h3>📋 FAZER PEDIDO</h3>
+        <h3>📋 FORMULÁRIO DE PEDIDO</h3>
         
         <label>Seu Nome (Cliente):</label>
-        <input type="text" id="cliente" placeholder="Quem solicita?">
+        <input type="text" id="cliente" placeholder="Nome completo">
 
-        <label>Onde buscar? (Retirada):</label>
-        <input type="text" id="retirada" placeholder="Ex: Farmácia, Loja, Casa">
+        <label>Onde buscamos? (Retirada):</label>
+        <input type="text" id="retirada" placeholder="Endereço da retirada">
 
-        <label>O que é o produto?:</label>
-        <input type="text" id="produto" placeholder="Ex: Remédio, pão, chaves">
+        <label>O que é o produto? (Pode pular linha):</label>
+        <textarea id="produto" rows="4" placeholder="Ex:&#10;1x Remédio&#10;2x Pães"></textarea>
 
         <label>Endereço de Entrega:</label>
-        <textarea id="entrega" rows="3" placeholder="Rua, número, bairro e referência"></textarea>
+        <textarea id="entrega" rows="3" placeholder="Rua, número e bairro"></textarea>
 
         <label>Pagamento:</label>
         <select id="pagamento">
             <option value="PIX💰">PIX</option>
-            <option value="CARTÃO💳">Cartão (Levamos máquina)</option>
-            <option value="DINHEIRO💵">Dinheiro</option>
+            <option value="CARTÃO💳">CARTÃO</option>
+            <option value="DINHEIRO💵">DINHEIRO</option>
         </select>
-
-        <label>Troco:</label>
-        <input type="text" id="troco" placeholder="Troco para quanto?">
 
         <label>Observações:</label>
         <textarea id="obs" placeholder="Algum detalhe extra?"></textarea>
 
-        <button class="btn-enviar" onclick="enviarWhatsApp()">
-            ENVIAR PEDIDO 🛵
-        </button>
+        <button class="btn-enviar" onclick="enviarWhatsApp()">ENVIAR PEDIDO 🛵</button>
         
-        <button class="btn-reset" onclick="resetarContador()">🔄 REINICIAR Nº DA COMANDA</button>
-    </div>
-
-    <div class="card" style="font-family: sans-serif; font-size: 0.85rem;">
-        <h3>⏳ Atendimento</h3>
-        <p>Dom a Sex: 07:30 às 18:00 | Sab: <b>FOLGA</b></p>
-        <p style="color:red">🚫 Proibido: Bebidas, Cigarros, Drogas ou Pessoas.</p>
+        <button id="btn-admin" onclick="resetarContador()">🔄 REINICIAR Nº DA COMANDA (ADMIN)</button>
     </div>
 
     <div class="footer">
-        Benaion Delivery © 2024<br>
-        Gabriel: (96) 99167-7854
+        Benaion Delivery © 2023<br>
+        Atendimento Rápido e Seguro
     </div>
 </div>
 
 <script>
-    // 1. Verificação de Status Aberto/Fechado
-    function verificarStatus() {
-        const agora = new Date();
-        const dia = agora.getDay(); // 0=Dom, 6=Sab
-        const hora = agora.getHours() + agora.getMinutes()/60;
-        const statusDiv = document.getElementById('status-loja');
-
-        const abertoHoje = (dia !== 6); 
-        const noHorario = (hora >= 7.5 && hora < 18); 
-
-        if (abertoHoje && noHorario) {
-            statusDiv.innerText = "🟢 ABERTO AGORA";
-            statusDiv.className = "status-bar aberto";
-        } else {
-            statusDiv.innerText = "🔴 FECHADO AGORA";
-            statusDiv.className = "status-bar fechado";
+    let cliquesLogo = 0;
+    function ativarAdmin() {
+        cliquesLogo++;
+        if(cliquesLogo >= 3) {
+            document.getElementById('btn-admin').style.display = 'block';
         }
     }
 
-    // 2. Sistema de Numeração
-    function obterProximoNumero() {
-        let atual = localStorage.getItem('benaion_pedido_n') || 0;
-        let proximo = parseInt(atual) + 1;
-        localStorage.setItem('benaion_pedido_n', proximo);
-        return proximo;
+    function verificarStatus() {
+        const agora = new Date();
+        const dia = agora.getDay();
+        const hora = agora.getHours() + agora.getMinutes()/60;
+        const statusDiv = document.getElementById('status-loja');
+        if (dia !== 6 && hora >= 7.5 && hora < 18) {
+            statusDiv.innerText = "🟢 ABERTO AGORA"; statusDiv.className = "status-bar aberto";
+        } else {
+            statusDiv.innerText = "🔴 FECHADO AGORA"; statusDiv.className = "status-bar fechado";
+        }
+    }
+
+    function enviarWhatsApp() {
+        let n = parseInt(localStorage.getItem('n_benaion')) || 0;
+        n++; localStorage.setItem('n_benaion', n);
+        
+        const telefone = "5596991677854";
+        const msg = `*✅️ COMANDA Nº ${n} 🗒*\n\n` +
+                    `> *CLIENTE🙋‍♂️*: ${document.getElementById('cliente').value}\n` +
+                    `> *ENTREGADOR🛵*: ........ \n` +
+                    `> *RETIRADA🛒*: ${document.getElementById('retirada').value}\n` +
+                    `> *PRODUTO📦*: \n${document.getElementById('produto').value}\n` +
+                    `> *ENTREGA🏡*: ${document.getElementById('entrega').value}\n` +
+                    `> *PAGAMENTO💰*: ${document.getElementById('pagamento').value}\n` +
+                    `> *OBS*: ${document.getElementById('obs').value}\n\n` +
+                    `*<<<<FIM DE COMANDA>>>>*`;
+
+        window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
     function resetarContador() {
-        if(confirm("Deseja zerar a numeração das comandas?")) {
-            localStorage.setItem('benaion_pedido_n', 0);
-            alert("Contador reiniciado! O próximo pedido será o Nº 1.");
+        if(confirm("Zerar a numeração das comandas?")) {
+            localStorage.setItem('n_benaion', 0);
+            alert("Contagem zerada!");
+            document.getElementById('btn-admin').style.display = 'none';
+            cliquesLogo = 0;
         }
     }
 
-    // 3. Envio para WhatsApp
-    function enviarWhatsApp() {
-        const telefone = "5596991677854";
-        const numComanda = obterProximoNumero();
-        
-        const campos = {
-            cliente: document.getElementById('cliente').value || "Não informado",
-            retirada: document.getElementById('retirada').value || "A informar",
-            produto: document.getElementById('produto').value || "Não informado",
-            entrega: document.getElementById('entrega').value || "A informar",
-            pagamento: document.getElementById('pagamento').value,
-            troco: document.getElementById('troco').value || "Não necessário",
-            obs: document.getElementById('obs').value || "Nenhuma"
-        };
-
-        const mensagem = `*✅️ COMANDA Nº ${numComanda} 🗒*\n\n` +
-                         `> *CLIENTE🙋‍♂️*: ${campos.cliente}\n` +
-                         `> *ENTREGADOR🛵*: Gabriel (Benaion)\n` +
-                         `> *RETIRADA🛒*: ${campos.retirada}\n` +
-                         `> *PRODUTO📦*: ${campos.produto}\n` +
-                         `> *ENTREGA🏡*: ${campos.entrega}\n` +
-                         `> *PAGAMENTO💰*: ${campos.pagamento}\n` +
-                         `> *TROCO💱*: ${campos.troco}\n` +
-                         `> *OBS*: ${campos.obs}\n\n` +
-                         `*<<<<FIM DE COMANDA>>>>*`;
-
-        window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`, '_blank');
-    }
-
-    // Iniciar verificação
     verificarStatus();
-    setInterval(verificarStatus, 60000); // Atualiza o status a cada minuto
 </script>
 </body>
 </html>
