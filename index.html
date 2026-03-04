@@ -50,7 +50,8 @@
     <div class="card">
         <h3>📍 Nossos Serviços</h3>
         <ul class="info-list">
-            <li><b>Farmácia, Comércios e Panificadoras</b></li>
+            <li><b>Farmácia</b></li>
+            <li><b>Comércios e Panificadoras</b></li>
             <li><b>Encomendas e Documentos</b></li>
             <li><b>Comidas:</b> Restaurantes, Açaí, Frango e Peixe Assado</li>
         </ul>
@@ -75,10 +76,13 @@
     </div>
 
     <div class="card">
-        <h3>📸 Parceiros & Promoções</h3>
+        <h3>📸 Parceiros e promoções </h3>
         <div class="flyer-grid">
-            <div class="flyer-item"><img src="https://i.postimg.cc/CL7LK21v/mas_não_esvazia_o_bolso_20260206_014621_0000.png" alt="Flyer 1" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 1'"></div>
-            <div class="flyer-item"><img src="https://i.postimg.cc/fTCTbPLS/para-cada-dificuldade-no-seu-dia-a-dia-Benaion-delivery-vem-com-a-solucao-20250529-070453-0000.png" alt="Flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
+            <div class="flyer-item"><img src="flyer1.jpg" alt="Flyer 1" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 1'"></div>
+            <div class="flyer-item"><img src="flyer2.jpg" alt="Flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
+            <div class="flyer-item"><img src="flyer2.jpg" alt="Flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
+            <div class="flyer-item"><img src="flyer2.jpg" alt="Flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
+            <div class="flyer-item"><img src="flyer2.jpg" alt="Flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
         </div>
     </div>
 
@@ -105,7 +109,7 @@
         </select>
 
         <label>Observações / Troco:</label>
-        <textarea id="obs" rows="2" placeholder="Ex: Trazer troco para R$ 50..."></textarea>
+        <textarea id="obs" rows="2" placeholder="Ex: Detalhes para o entregador..."></textarea>
 
         <button class="btn-enviar" onclick="enviarWhatsApp()">ENVIAR PEDIDO 🛵</button>
         
@@ -137,6 +141,27 @@
     }
 
     function enviarWhatsApp() {
+        let n = parseInt(localStorage.getItem('n_ped_benaion')) || 0;
+        n++;
+        localStorage.setItem('n_ped_benaion', n);
+        
+        const telefone = "5596991677854";
+        
+        const msg = `*✅️ COMANDA Nº ${n} 🗒*\n\n` +
+                    `> *CLIENTE🙋‍♂️*:\n${document.getElementById('cliente').value}\n\n` +
+                    `> *ENTREGADOR🛵*:\n........\n\n` +
+                    `> *RETIRADA🛒*:\n${document.getElementById('retirada').value}\n\n` +
+                    `> *PRODUTOS📦*:\n${document.getElementById('produto').value}\n\n` +
+                    `> *ENTREGA🏡*:\n${document.getElementById('entrega').value}\n\n` +
+                    `> *PAGAMENTO💰*:\n${document.getElementById('pagamento').value}\n\n` +
+                    `> *OBS/TROCO*:\n${document.getElementById('obs').value}\n\n` +
+                    `*<<<<FIM DE COMANDA>>>>*`;
+
+        window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+</script>
+</body>
+</html>
         let n = parseInt(localStorage.getItem('n_ped_benaion')) || 0;
         n++;
         localStorage.setItem('n_ped_benaion', n);
