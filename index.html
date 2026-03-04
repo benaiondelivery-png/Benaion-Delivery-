@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benaion Delivery - Pedido</title>
+    <style>
+        :root { --vermelho: #bc0000; --amarelo: #f2b705; --fundo: #f4f4f4; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--fundo); padding-bottom: 50px; }
+        header { background: var(--vermelho); color: white; padding: 30px 15px; text-align: center; border-bottom: 5px solid var(--amarelo); }
+        .container { max-width: 500px; margin: -20px auto 0; padding: 15px; }
+        .comanda-box { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h3 { color: var(--vermelho); text-align: center; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.9rem; color: #555; }
+        input, textarea, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 1rem; }
+        .btn-enviar { background: #25d366; color: white; border: none; width: 100%; padding: 18px; border-radius: 10px; font-weight: bold; font-size: 1.1rem; cursor: pointer; margin-top: 25px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    </style>
+</head>
+<body>
+<header>
+    <h1 style="margin:0; font-style:italic; color:var(--amarelo);">BENAION</h1>
+    <p style="margin:0; letter-spacing:3px;">DELIVERY</p>
+</header>
+<div class="container">
+    <div class="comanda-box">
+        <h3>✅️ COMANDA DE PEDIDO 🗒</h3>
+        <label>Seu Nome (CLIENTE🙋‍♂️):</label>
+        <input type="text" id="cliente" placeholder="Seu nome">
+        <label>Endereço de Retirada (🛒):</label>
+        <input type="text" id="retirada" placeholder="Onde buscamos?">
+        <label>Qual Produto (📦):</label>
+        <input type="text" id="produto" placeholder="O que é?">
+        <label>Endereço de Entrega (🏡):</label>
+        <textarea id="entrega" placeholder="Bairro, Rua, Nº"></textarea>
+        <label>Forma de Pagamento (💰):</label>
+        <select id="pagamento"><option value="PIX💰">PIX</option><option value="CARTÃO💳">Cartão</option><option value="DINHEIRO💵">Dinheiro</option></select>
+        <label>Troco (💱):</label>
+        <input type="text" id="troco" placeholder="Valor do troco">
+        <label>Observações:</label>
+        <textarea id="obs"></textarea>
+        <button class="btn-enviar" onclick="enviarWhatsApp()">ENVIAR VIA WHATSAPP</button>
+    </div>
+</div>
+<script>
+    function enviarWhatsApp() {
+        const telefone = "5592991234567"; // COLOQUE SEU NUMERO AQUI
+        const cliente = document.getElementById('cliente').value;
+        const retirada = document.getElementById('retirada').value;
+        const produto = document.getElementById('produto').value;
+        const entrega = document.getElementById('entrega').value;
+        const pagamento = document.getElementById('pagamento').value;
+        const msg = `*✅️COMANDA DE PEDIDO🗒*\n\n> *CLIENTE🙋‍♂️*: ${cliente}\n> *RETIRADA🛒*: ${retirada}\n> *PRODUTO📦*: ${produto}\n> *ENTREGA🏡*: ${entrega}\n> *PAGAMENTO💰*: ${pagamento}`;
+        window.open("https://wa.me/" + telefone + "?text=" + encodeURIComponent(msg), '_blank');
+    }
+</script>
+</body>
+</html>
+
