@@ -21,18 +21,19 @@
         .info-list li::before { content: '✅'; position: absolute; left: 0; }
         .proibido { color: #d9534f; font-weight: bold; font-size: 0.85rem; background: #fff1f0; padding: 10px; border-radius: 8px; border: 1px solid #ffa39e; }
         
-        .taxa-box { background: #fffde7; border: 1px solid #f2b705; padding: 12px; border-radius: 8px; font-size: 0.85rem; color: #555; }
+        .taxa-box { background: #fffde7; border: 1px solid #f2b705; padding: 12px; border-radius: 8px; font-size: 0.95rem; color: #555; }
 
         .flyer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-        .flyer-item { width: 100%; border-radius: 8px; border: 1px solid #ddd; background: #eee; min-height: 100px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #999; text-align: center; }
+        .flyer-item { width: 100%; border-radius: 8px; border: 1px solid #ddd; background: #eee; min-height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .flyer-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.8rem; color: #555; text-transform: uppercase; }
-        input, textarea, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 1rem; background: #fff !important; color: #000; }
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.8rem; color: #444; text-transform: uppercase; }
+        input, textarea, select { width: 100%; padding: 14px; margin-top: 5px; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 1rem; background: #fff !important; color: #000; }
         
-        .btn-enviar { background: var(--sucesso); color: white; border: none; width: 100%; padding: 20px; border-radius: 50px; font-weight: bold; font-size: 1.2rem; cursor: pointer; margin-top: 25px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+        .btn-enviar { background: var(--sucesso); color: white; border: none; width: 100%; padding: 22px; border-radius: 50px; font-weight: bold; font-size: 1.4rem; cursor: pointer; margin-top: 25px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
         
-        #btn-admin { display: none; background: #444; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 8px; margin-top: 15px; font-size: 0.7rem; cursor: pointer; }
-        .footer { text-align: center; color: #888; font-size: 0.8rem; padding: 20px; }
+        #btn-admin { display: none; background: #333; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 8px; margin-top: 15px; font-size: 0.75rem; cursor: pointer; }
+        .footer { text-align: center; color: #888; font-size: 0.85rem; padding: 30px; }
     </style>
 </head>
 <body>
@@ -57,12 +58,12 @@
     </div>
 
     <div class="card">
-        <h3>💰 Tabela de Taxas</h3>
+        <h3>💰 Como Cobramos</h3>
         <div class="taxa-box">
-            • <b>Tempo:</b> R$ 0,30/min (após 3 min de espera)<br>
-            • <b>Volume (Bag 45L):</b> Meia Bag R$ 2,00 | Cheia R$ 5,00<br>
-            • <b>Esforço Extra:</b> Escada R$ 2,00/lance | Pontes R$ 0,05/metro<br>
-            • <b>Adição de Rota:</b> Baseada no bairro de retirada.
+            • Bairro<br>
+            • Tempo<br>
+            • Quantidade de produtos<br>
+            • Esforço extra
         </div>
     </div>
 
@@ -75,8 +76,8 @@
     <div class="card">
         <h3>📸 Parceiros & Promoções</h3>
         <div class="flyer-grid">
-            <div class="flyer-item">Foto do Parceiro 1</div>
-            <div class="flyer-item">Foto do Parceiro 2</div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/CL7LK21v/mas_não_esvazia_o_bolso_20260206_014621_0000.png" alt="Flyer 1" onerror="this.parentNode.innerText='Foto 1'"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/fTCTbPLS/para-cada-dificuldade-no-seu-dia-a-dia-Benaion-delivery-vem-com-a-solucao-20250529-070453-0000.png" alt="Flyer 2" onerror="this.parentNode.innerText='Foto 2'"></div>
         </div>
     </div>
 
@@ -90,7 +91,7 @@
         <textarea id="retirada" rows="2" placeholder="Nome do local e endereço"></textarea>
 
         <label>Produtos / Lista de Compras:</label>
-        <textarea id="produto" rows="5" placeholder="1. Item A&#10;2. Item B"></textarea>
+        <textarea id="produto" rows="5" placeholder="Liste os itens aqui..."></textarea>
 
         <label>Endereço de Entrega:</label>
         <textarea id="entrega" rows="2" placeholder="Rua, número e bairro"></textarea>
@@ -103,11 +104,11 @@
         </select>
 
         <label>Observações / Troco:</label>
-        <textarea id="obs" rows="2" placeholder="Detalhes para o entregador"></textarea>
+        <textarea id="obs" rows="2" placeholder="Ex: Trazer troco para R$ 50..."></textarea>
 
         <button class="btn-enviar" onclick="enviarWhatsApp()">ENVIAR PEDIDO 🛵</button>
         
-        <button id="btn-admin" onclick="resetarContador()">🔄 ZERAR Nº DA COMANDA</button>
+        <button id="btn-admin" onclick="resetarContador()">🔄 REINICIAR Nº DA COMANDA (ADMIN)</button>
     </div>
 
     <div class="footer">
@@ -127,7 +128,7 @@
         const senha = prompt("Senha do Administrador:");
         if(senha === "1234") { 
             localStorage.setItem('n_ped_benaion', 0);
-            alert("Contador reiniciado!");
+            alert("Contador reiniciado com sucesso!");
             location.reload();
         } else {
             alert("Senha incorreta!");
@@ -141,7 +142,6 @@
         
         const telefone = "5596991677854";
         
-        // Formatação: Pergunta com menção (>), Resposta em linha nova e limpa
         const msg = `*✅️ COMANDA Nº ${n} 🗒*\n\n` +
                     `> *CLIENTE🙋‍♂️*:\n${document.getElementById('cliente').value}\n\n` +
                     `> *ENTREGADOR🛵*:\n........\n\n` +
