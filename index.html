@@ -3,33 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benaion Delivery</title>
+    <title>Benaion Delivery - Oficial</title>
     <style>
         :root { --vermelho: #bc0000; --amarelo: #f2b705; --fundo: #f4f4f4; --sucesso: #25d366; }
-        body { font-family: 'Arial Black', sans-serif; margin: 0; background: var(--fundo); color: #333; }
+        body { font-family: 'Arial', sans-serif; margin: 0; background: var(--fundo); color: #333; line-height: 1.6; }
         
         header { background: var(--vermelho); color: white; padding: 40px 15px; text-align: center; border-bottom: 6px solid var(--amarelo); }
-        .logo-main { margin: 0; font-style: italic; color: var(--amarelo); font-size: 3.2rem; line-height: 1; text-shadow: 3px 3px 0px #000; letter-spacing: -2px; transform: skew(-5deg); cursor: pointer; }
-        .logo-sub { margin: 0; letter-spacing: 6px; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; color: white; margin-top: -5px; }
+        .logo-main { margin: 0; font-style: italic; font-weight: 900; color: var(--amarelo); font-size: 3rem; line-height: 1; text-shadow: 3px 3px 0px #000; letter-spacing: -2px; transform: skew(-5deg); cursor: pointer; }
+        
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; }
+        
+        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-top: 5px solid var(--vermelho); }
+        h3 { color: var(--vermelho); margin-top: 0; border-bottom: 2px solid #f1f1f1; padding-bottom: 8px; text-transform: uppercase; font-size: 1.1rem; }
+        
+        .info-list { list-style: none; padding: 0; font-size: 0.9rem; }
+        .info-list li { margin-bottom: 8px; padding-left: 25px; position: relative; }
+        .info-list li::before { content: '✅'; position: absolute; left: 0; }
+        .proibido { color: #d9534f; font-weight: bold; font-size: 0.85rem; background: #fff1f0; padding: 10px; border-radius: 8px; border: 1px solid #ffa39e; }
+        
+        .taxa-box { background: #fffde7; border: 1px solid #f2b705; padding: 12px; border-radius: 8px; font-size: 0.85rem; color: #555; }
 
-        .status-bar { text-align: center; padding: 10px; font-weight: bold; font-size: 1.1rem; margin: -15px auto 0; border-radius: 0 0 15px 15px; max-width: 220px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; }
-        .aberto { background: var(--sucesso); color: white; }
-        .fechado { background: #555; color: white; }
+        .flyer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .flyer-item { width: 100%; border-radius: 8px; border: 1px solid #ddd; background: #eee; min-height: 100px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #999; text-align: center; }
 
-        .container { max-width: 500px; margin: 20px auto; padding: 15px; padding-bottom: 80px; }
-        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 6px solid var(--vermelho); }
-        h3 { color: var(--vermelho); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 1.1rem; text-transform: uppercase; }
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.8rem; color: #555; text-transform: uppercase; }
+        input, textarea, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 1rem; background: #fff !important; color: #000; }
         
-        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.8rem; color: #444; text-transform: uppercase; }
-        /* Campos agora Brancos e Claros */
-        input, textarea, select { width: 100%; padding: 14px; margin-top: 5px; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 1rem; font-family: sans-serif; background: #ffffff !important; color: #000; }
+        .btn-enviar { background: var(--sucesso); color: white; border: none; width: 100%; padding: 20px; border-radius: 50px; font-weight: bold; font-size: 1.2rem; cursor: pointer; margin-top: 25px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
         
-        .btn-enviar { background: var(--sucesso); color: white; border: none; width: 100%; padding: 22px; border-radius: 15px; font-weight: bold; font-size: 1.4rem; cursor: pointer; margin-top: 25px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
-        
-        /* Botão de Reset Oculto (Aparece com clique triplo na logo) */
-        #btn-admin { display: none; background: #333; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 8px; margin-top: 10px; font-size: 0.7rem; cursor: pointer; }
-        
-        .footer { text-align: center; font-family: sans-serif; font-size: 0.8rem; color: #888; margin-top: 30px; }
+        #btn-admin { display: none; background: #444; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 8px; margin-top: 15px; font-size: 0.7rem; cursor: pointer; }
+        .footer { text-align: center; color: #888; font-size: 0.8rem; padding: 20px; }
     </style>
 </head>
 <body>
@@ -37,98 +40,120 @@
 <header>
     <div onclick="ativarAdmin()">
         <h1 class="logo-main">BENAION</h1>
-        <p class="logo-sub">DELIVERY</p>
+        <p style="margin:0; letter-spacing: 5px; font-weight: bold;">DELIVERY</p>
     </div>
 </header>
 
-<div id="status-loja" class="status-bar">Carregando...</div>
-
 <div class="container">
+    
     <div class="card">
-        <h3>📋 FORMULÁRIO DE PEDIDO</h3>
+        <h3>📍 Nossos Serviços</h3>
+        <ul class="info-list">
+            <li><b>Farmácia, Comércios e Panificadoras</b></li>
+            <li><b>Encomendas e Documentos</b></li>
+            <li><b>Comidas:</b> Restaurantes, Açaí, Frango e Peixe Assado</li>
+        </ul>
+        <p class="proibido">⚠️ <b>NÃO ENTREGAMOS:</b> Bebidas alcoólicas, cigarros, drogas ou pessoas.</p>
+    </div>
+
+    <div class="card">
+        <h3>💰 Tabela de Taxas</h3>
+        <div class="taxa-box">
+            • <b>Tempo:</b> R$ 0,30/min (após 3 min de espera)<br>
+            • <b>Volume (Bag 45L):</b> Meia Bag R$ 2,00 | Cheia R$ 5,00<br>
+            • <b>Esforço Extra:</b> Escada R$ 2,00/lance | Pontes R$ 0,05/metro<br>
+            • <b>Adição de Rota:</b> Baseada no bairro de retirada.
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>🌍 Área & Horário</h3>
+        <p style="margin: 0; font-size: 0.9rem;">📍 <b>Laranjal do Jari-AP e Monte Dourado-PA</b></p>
+        <p style="margin: 5px 0 0; font-size: 0.9rem;">⏰ <b>Dom a Sex:</b> 07:30 às 18:00</p>
+    </div>
+
+    <div class="card">
+        <h3>📸 Parceiros & Promoções</h3>
+        <div class="flyer-grid">
+            <div class="flyer-item">Foto do Parceiro 1</div>
+            <div class="flyer-item">Foto do Parceiro 2</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>📝 Comanda de Pedido</h3>
         
         <label>Seu Nome (Cliente):</label>
-        <input type="text" id="cliente" placeholder="Nome completo">
+        <input type="text" id="cliente" placeholder="Quem está pedindo?">
 
-        <label>Onde buscamos? (Retirada):</label>
-        <input type="text" id="retirada" placeholder="Endereço da retirada">
+        <label>Retirada (Onde buscamos?):</label>
+        <textarea id="retirada" rows="2" placeholder="Nome do local e endereço"></textarea>
 
-        <label>O que é o produto? (Pode pular linha):</label>
-        <textarea id="produto" rows="4" placeholder="Ex:&#10;1x Remédio&#10;2x Pães"></textarea>
+        <label>Produtos / Lista de Compras:</label>
+        <textarea id="produto" rows="5" placeholder="1. Item A&#10;2. Item B"></textarea>
 
         <label>Endereço de Entrega:</label>
-        <textarea id="entrega" rows="3" placeholder="Rua, número e bairro"></textarea>
+        <textarea id="entrega" rows="2" placeholder="Rua, número e bairro"></textarea>
 
         <label>Pagamento:</label>
         <select id="pagamento">
-            <option value="PIX💰">PIX</option>
-            <option value="CARTÃO💳">CARTÃO</option>
-            <option value="DINHEIRO💵">DINHEIRO</option>
+            <option value="PIX 💰">PIX</option>
+            <option value="CARTÃO 💳">CARTÃO</option>
+            <option value="DINHEIRO 💵">DINHEIRO</option>
         </select>
 
-        <label>Observações:</label>
-        <textarea id="obs" placeholder="Algum detalhe extra?"></textarea>
+        <label>Observações / Troco:</label>
+        <textarea id="obs" rows="2" placeholder="Detalhes para o entregador"></textarea>
 
         <button class="btn-enviar" onclick="enviarWhatsApp()">ENVIAR PEDIDO 🛵</button>
         
-        <button id="btn-admin" onclick="resetarContador()">🔄 REINICIAR Nº DA COMANDA (ADMIN)</button>
+        <button id="btn-admin" onclick="resetarContador()">🔄 ZERAR Nº DA COMANDA</button>
     </div>
 
     <div class="footer">
-        Benaion Delivery © 2023<br>
-        Atendimento Rápido e Seguro
+        Benaion Delivery © 2023 <br>
+        Laranjal do Jari - Monte Dourado
     </div>
 </div>
 
 <script>
-    let cliquesLogo = 0;
+    let cliques = 0;
     function ativarAdmin() {
-        cliquesLogo++;
-        if(cliquesLogo >= 3) {
-            document.getElementById('btn-admin').style.display = 'block';
-        }
+        cliques++;
+        if(cliques >= 3) { document.getElementById('btn-admin').style.display = 'block'; }
     }
 
-    function verificarStatus() {
-        const agora = new Date();
-        const dia = agora.getDay();
-        const hora = agora.getHours() + agora.getMinutes()/60;
-        const statusDiv = document.getElementById('status-loja');
-        if (dia !== 6 && hora >= 7.5 && hora < 18) {
-            statusDiv.innerText = "🟢 ABERTO AGORA"; statusDiv.className = "status-bar aberto";
+    function resetarContador() {
+        const senha = prompt("Senha do Administrador:");
+        if(senha === "1234") { 
+            localStorage.setItem('n_ped_benaion', 0);
+            alert("Contador reiniciado!");
+            location.reload();
         } else {
-            statusDiv.innerText = "🔴 FECHADO AGORA"; statusDiv.className = "status-bar fechado";
+            alert("Senha incorreta!");
         }
     }
 
     function enviarWhatsApp() {
-        let n = parseInt(localStorage.getItem('n_benaion')) || 0;
-        n++; localStorage.setItem('n_benaion', n);
+        let n = parseInt(localStorage.getItem('n_ped_benaion')) || 0;
+        n++;
+        localStorage.setItem('n_ped_benaion', n);
         
         const telefone = "5596991677854";
+        
+        // Formatação: Pergunta com menção (>), Resposta em linha nova e limpa
         const msg = `*✅️ COMANDA Nº ${n} 🗒*\n\n` +
-                    `> *CLIENTE🙋‍♂️*: ${document.getElementById('cliente').value}\n` +
-                    `> *ENTREGADOR🛵*: ........ \n` +
-                    `> *RETIRADA🛒*: ${document.getElementById('retirada').value}\n` +
-                    `> *PRODUTO📦*: \n${document.getElementById('produto').value}\n` +
-                    `> *ENTREGA🏡*: ${document.getElementById('entrega').value}\n` +
-                    `> *PAGAMENTO💰*: ${document.getElementById('pagamento').value}\n` +
-                    `> *OBS*: ${document.getElementById('obs').value}\n\n` +
+                    `> *CLIENTE🙋‍♂️*:\n${document.getElementById('cliente').value}\n\n` +
+                    `> *ENTREGADOR🛵*:\n........\n\n` +
+                    `> *RETIRADA🛒*:\n${document.getElementById('retirada').value}\n\n` +
+                    `> *PRODUTOS📦*:\n${document.getElementById('produto').value}\n\n` +
+                    `> *ENTREGA🏡*:\n${document.getElementById('entrega').value}\n\n` +
+                    `> *PAGAMENTO💰*:\n${document.getElementById('pagamento').value}\n\n` +
+                    `> *OBS/TROCO*:\n${document.getElementById('obs').value}\n\n` +
                     `*<<<<FIM DE COMANDA>>>>*`;
 
         window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`, '_blank');
     }
-
-    function resetarContador() {
-        if(confirm("Zerar a numeração das comandas?")) {
-            localStorage.setItem('n_benaion', 0);
-            alert("Contagem zerada!");
-            document.getElementById('btn-admin').style.display = 'none';
-            cliquesLogo = 0;
-        }
-    }
-
-    verificarStatus();
 </script>
 </body>
 </html>
