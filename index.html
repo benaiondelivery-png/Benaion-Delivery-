@@ -23,12 +23,13 @@
         
         .taxa-box { background: #fffde7; border: 1px solid #f2b705; padding: 12px; border-radius: 8px; font-size: 0.95rem; color: #555; }
 
-        .flyer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-        .flyer-item { width: 100%; border-radius: 8px; border: 1px solid #ddd; background: #eee; min-height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; font-size: 0.8rem; color: #888; text-align: center; }
-        .flyer-item img { width: 100%; height: 100%; object-fit: cover; }
+        /* Grade de Imagens Ajustada */
+        .flyer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 10px; }
+        .flyer-item { background: #eee; border-radius: 10px; border: 1px solid #ddd; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 150px; }
+        .flyer-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.8rem; color: #444; text-transform: uppercase; }
-        input, textarea, select { width: 100%; padding: 14px; margin-top: 5px; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 1rem; background: #fff !important; color: #000; }
+        input, textarea, select { width: 100%; padding: 14px; margin-top: 5px; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 1rem; background: #fff !important; }
         
         .btn-enviar { background: var(--sucesso); color: white; border: none; width: 100%; padding: 22px; border-radius: 50px; font-weight: bold; font-size: 1.4rem; cursor: pointer; margin-top: 25px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
         
@@ -76,45 +77,37 @@
     </div>
 
     <div class="card">
-        <h3>📸 Parceiros e promoções </h3>
+        <h3>📸 Parceiros e promoções</h3>
         <div class="flyer-grid">
-            <div class="flyer-item"><img src="https://i.postimg.cc/XJwXkcfP/Post_para_Instagram_Encomende_seu_Frango_Assado_Gastronômico_Marrom_20250910_122450_0000.png" alt="Flyer 1" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 1'"></div>
-            <div class="flyer-item"><img src="https://i.postimg.cc/L525CYvJ/Post_Instagram_açaí_entrega_grátis_simples_roxo_20260122_073356_0000.png" alt="flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
-            <div class="flyer-item"><img src="https://i.postimg.cc/Y0M0nG8j/Marrom_Pão_Cesta_Padaria_Cardápio_20260213_053737_0000.png" alt="Flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
-            <div class="flyer-item"><img src="https://i.postimg.cc/cHQ6BM7S/Cardápio_marmitex_almoço_restaurante_moderno_amarelo_marrom_instagram_story_20260123_110156_0000.png" alt="Flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
-           <div class="flyer-item"><img src="https://i.postimg.cc/fTCTbPLS/para-cada-dificuldade-no-seu-dia-a-dia-Benaion-delivery-vem-com-a-solucao-20250529-070453-0000.png" alt="Flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
-           <div class="flyer-item"><img src="https://i.postimg.cc/CL7LK21v/mas_não_esvazia_o_bolso_20260206_014621_0000.png" alt="Flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
-            <div class="flyer-item"><img src="https://i.postimg.cc/8Cf7jVjm/Story-do-Instagram-Moderno-Farmacia-Medicamento-Entrega-Rapida-20250602-102711-0000.png" alt="Flyer 2" onerror="this.style.display='none'; this.parentNode.innerText='Foto Parceiro 2'"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/XJwXkcfP/Post_para_Instagram_Encomende_seu_Frango_Assado_Gastronômico_Marrom_20250910_122450_0000.png" onerror="this.style.display='none'; this.parentNode.innerText='Frango Assado'"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/L525CYvJ/Post_Instagram_açaí_entrega_grátis_simples_roxo_20260122_073356_0000.png" onerror="this.style.display='none'; this.parentNode.innerText='Açaí'"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/Y0M0nG8j/Marrom_Pão_Cesta_Padaria_Cardápio_20260213_053737_0000.png" onerror="this.style.display='none'; this.parentNode.innerText='Padaria'"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/cHQ6BM7S/Cardápio_marmitex_almoço_restaurante_moderno_amarelo_marrom_instagram_story_20260123_110156_0000.png" onerror="this.style.display='none'; this.parentNode.innerText='Marmitex'"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/fTCTbPLS/para-cada-dificuldade-no-seu-dia-a-dia-Benaion-delivery-vem-com-a-solucao-20250529-070453-0000.png" onerror="this.style.display='none'; this.parentNode.innerText='Solução Benaion'"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/CL7LK21v/mas_não_esvazia_o_bolso_20260206_014621_0000.png" onerror="this.style.display='none'; this.parentNode.innerText='Promoção'"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/8Cf7jVjm/Story-do-Instagram-Moderno-Farmacia-Medicamento-Entrega-Rapida-20250602-102711-0000.png" onerror="this.style.display='none'; this.parentNode.innerText='Farmácia'"></div>
         </div>
     </div>
 
     <div class="card">
         <h3>📝 Comanda de Pedido</h3>
-        
         <label>Seu Nome (Cliente):</label>
         <input type="text" id="cliente" placeholder="Quem está pedindo?">
-
         <label>Retirada (Onde buscamos?):</label>
         <textarea id="retirada" rows="2" placeholder="Nome do local e endereço"></textarea>
-
         <label>Produtos / Lista de Compras:</label>
         <textarea id="produto" rows="5" placeholder="Liste os itens aqui..."></textarea>
-
         <label>Endereço de Entrega:</label>
         <textarea id="entrega" rows="2" placeholder="Rua, número e bairro"></textarea>
-
         <label>Pagamento:</label>
         <select id="pagamento">
             <option value="PIX 💰">PIX</option>
             <option value="CARTÃO 💳">CARTÃO</option>
             <option value="DINHEIRO 💵">DINHEIRO</option>
         </select>
-
         <label>Observações / Troco:</label>
         <textarea id="obs" rows="2" placeholder="Ex: Detalhes para o entregador..."></textarea>
-
         <button class="btn-enviar" onclick="enviarWhatsApp()">ENVIAR PEDIDO 🛵</button>
-        
         <button id="btn-admin" onclick="resetarContador()">🔄 REINICIAR Nº DA COMANDA (ADMIN)</button>
     </div>
 
@@ -135,7 +128,7 @@
         const senha = prompt("Senha do Administrador:");
         if(senha === "1234") { 
             localStorage.setItem('n_ped_benaion', 0);
-            alert("Contador reiniciado com sucesso!");
+            alert("Contador reiniciado!");
             location.reload();
         } else {
             alert("Senha incorreta!");
@@ -148,28 +141,6 @@
         localStorage.setItem('n_ped_benaion', n);
         
         const telefone = "5596991677854";
-        
-        const msg = `*✅️ COMANDA Nº ${n} 🗒*\n\n` +
-                    `> *CLIENTE🙋‍♂️*:\n${document.getElementById('cliente').value}\n\n` +
-                    `> *ENTREGADOR🛵*:\n........\n\n` +
-                    `> *RETIRADA🛒*:\n${document.getElementById('retirada').value}\n\n` +
-                    `> *PRODUTOS📦*:\n${document.getElementById('produto').value}\n\n` +
-                    `> *ENTREGA🏡*:\n${document.getElementById('entrega').value}\n\n` +
-                    `> *PAGAMENTO💰*:\n${document.getElementById('pagamento').value}\n\n` +
-                    `> *OBS/TROCO*:\n${document.getElementById('obs').value}\n\n` +
-                    `*<<<<FIM DE COMANDA>>>>*`;
-
-        window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`, '_blank');
-    }
-</script>
-</body>
-</html>
-        let n = parseInt(localStorage.getItem('n_ped_benaion')) || 0;
-        n++;
-        localStorage.setItem('n_ped_benaion', n);
-        
-        const telefone = "5596991677854";
-        
         const msg = `*✅️ COMANDA Nº ${n} 🗒*\n\n` +
                     `> *CLIENTE🙋‍♂️*:\n${document.getElementById('cliente').value}\n\n` +
                     `> *ENTREGADOR🛵*:\n........\n\n` +
