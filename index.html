@@ -3,109 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benaion Delivery</title>
+    <title>Benaion Delivery - Oficial</title>
     
-    <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
     <style>
-        body { font-family: sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
-        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        input, button, textarea { width: 100%; padding: 10px; margin: 5px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
-        button { background: #bc0000; color: white; font-weight: bold; cursor: pointer; border: none; }
-        .btn-whats { background: #25d366; }
+        :root { --vermelho: #bc0000; --amarelo: #f2b705; --fundo: #f4f4f4; --sucesso: #25d366; }
+        body { font-family: 'Arial', sans-serif; margin: 0; background: var(--fundo); color: #333; line-height: 1.6; scroll-behavior: smooth; }
+        
+        /* MENU NO TOPO */
+        nav { background: #1a1a1a; padding: 12px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; border-bottom: 3px solid var(--amarelo); overflow-x: auto; }
+        nav a { color: white; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; white-space: nowrap; }
+
+        header { background: var(--vermelho); color: white; padding: 40px 15px; text-align: center; border-bottom: 6px solid var(--amarelo); }
+        .logo-main { margin: 0; font-style: italic; font-weight: 900; color: var(--amarelo); font-size: 3rem; line-height: 1; text-shadow: 3px 3px 0px #000; letter-spacing: -2px; transform: skew(-5deg); }
+        
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; }
+        
+        /* ESTILO DOS CARDS ANTIGOS */
+        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-top: 5px solid var(--vermelho); }
+        h3 { color: var(--vermelho); margin-top: 0; border-bottom: 2px solid #f1f1f1; padding-bottom: 8px; text-transform: uppercase; font-size: 1.1rem; }
+        
+        /* LOGIN RÁPIDO */
+        .login-box input { width: 100%; padding: 10px; margin-bottom: 8px; border-radius: 8px; border: 1px solid #ddd; }
+        .btn-mini { background: #444; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer; font-size: 0.7rem; width: 48%; }
+
+        /* GRID DE PARCEIROS */
+        .flyer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .flyer-item { border-radius: 8px; border: 1px solid #ddd; overflow: hidden; background: #eee; }
+        .flyer-item img { width: 100%; display: block; }
+
+        /* FORMULÁRIO */
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.8rem; color: #444; }
+        input, textarea, select { width: 100%; padding: 14px; margin-top: 5px; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 1rem; }
+        
+        .btn-enviar { background: var(--sucesso); color: white; border: none; width: 100%; padding: 22px; border-radius: 50px; font-weight: bold; font-size: 1.4rem; cursor: pointer; margin-top: 25px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+        
+        /* AVALIAÇÃO */
+        .stars { color: var(--amarelo); font-size: 1.8rem; text-align: center; cursor: pointer; }
+
+        /* SEO FOOTER */
+        .seo-text { background: #fff; padding: 20px; border-radius: 15px; font-size: 0.85rem; color: #666; text-align: center; border: 1px solid #ddd; margin-top: 20px; }
+        .footer-creditos { text-align: center; color: #888; font-size: 0.8rem; padding: 20px; }
     </style>
 </head>
 <body>
 
+<nav>
+    <a href="#inicio">Início</a>
+    <a href="#parceiros">Parceiros</a>
+    <a href="#comanda">Pedido</a>
+    <a href="#avaliar">Avaliar</a>
+</nav>
+
+<header id="inicio">
+    <h1 class="logo-main">BENAION</h1>
+    <p style="margin:0; letter-spacing: 5px; font-weight: bold;">DELIVERY</p>
+</header>
+
+<div class="container">
+    
     <div class="card">
-        <h2>🚀 Benaion Delivery</h2>
-        <div id="login-section">
-            <input type="email" id="email" placeholder="E-mail">
-            <input type="password" id="senha" placeholder="Senha">
-            <button onclick="fazerLogin()">Entrar</button>
-            <button onclick="criarConta()" style="background:#555">Criar Conta</button>
+        <h3>🔐 Área do Cliente</h3>
+        <div id="login-form">
+            <div class="login-box">
+                <input type="email" id="email" placeholder="Seu e-mail">
+                <input type="password" id="senha" placeholder="Sua senha">
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <button class="btn-mini" onclick="login()" style="background: var(--vermelho);">ENTRAR</button>
+                <button class="btn-mini" onclick="cadastrar()">CRIAR CONTA</button>
+            </div>
         </div>
-        <div id="user-section" style="display:none">
-            <p>Logado como: <b id="user-display"></b></p>
-            <button onclick="sair()" style="background:#555">Sair</button>
+        <div id="user-info" style="display:none; text-align:center;">
+            <p>Bem-vindo, <b id="user-email"></b></p>
+            <button class="btn-mini" onclick="logout()">SAIR</button>
         </div>
     </div>
 
-    <div class="card">
-        <h3>Fazer Pedido</h3>
-        <input type="text" id="nome-cliente" placeholder="Seu Nome">
-        <textarea id="texto-pedido" placeholder="O que você deseja pedir?"></textarea>
-        <button class="btn-whats" onclick="salvarEPedir()">ENVIAR PEDIDO</button>
+    <div class="card" id="parceiros">
+        <h3>📸 Parceiros e Promoções</h3>
+        <div class="flyer-grid">
+            <div class="flyer-item"><img src="https://i.postimg.cc/8z0Nnq3p/1000528495.png"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/mD8N0Wf4/1001408010.png"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/m26qYV3L/1001590674.png"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/mD0M9hCq/1001396230.png"></div>
+        </div>
     </div>
 
-    <script>
-        // Suas chaves que você enviou
-        const firebaseConfig = {
-            apiKey: "AIzaSyBHokOvVml6hxvzJYVJX9ppx1Wr1mDn11g",
-            authDomain: "benaion-delivery.firebaseapp.com",
-            projectId: "benaion-delivery",
-            storageBucket: "benaion-delivery.firebasestorage.app",
-            messagingSenderId: "309927409217",
-            appId: "1:309927409217:web:10e7e2b951fa4ad0b1b8c0"
+    <div class="card" id="comanda">
+        <h3>📝 Comanda de Pedido</h3>
+        <label>Seu Nome:</label>
+        <input type="text" id="cliente" placeholder="Quem está pedindo?">
+
+        <label>Produtos / Lista de Compras:</label>
+        <textarea id="produto" rows="4" placeholder="O que vamos buscar?"></textarea>
+
+        <label>Endereço de Entrega:</label>
+        <input type="text" id="entrega" placeholder="Rua, número e bairro">
+
+        <label>Pagamento:</label>
+        <select id="pagamento">
+            <option>PIX 💰</option>
+            <option>CARTÃO 💳</option>
+            <option>DINHEIRO 💵</option>
+        </select>
+
+        <button class="btn-enviar" onclick="enviarPedido()">ENVIAR PEDIDO 🛵</button>
+    </div>
+
+    <div class="card" id="avaliar">
+        <h3>⭐ Avalie nosso serviço</h3>
+        <div class="stars" id="star-rating">
+            <span onclick="votar(1)">☆</span><span onclick="votar(2)">☆</span><span onclick="votar(3)">☆</span><span onclick="votar(4)">☆</span><span onclick="votar(5)">☆</span>
+        </div>
+        <p id="voto-txt" style="text-align:center; font-size:0.8rem; color: #888;">Toque para avaliar</p>
+    </div>
+
+    <div class="seo-text">
+        A <b>Benaion Delivery</b> realiza entregas rápidas em <b>Laranjal do Jari-AP</b> e <b>Monte Dourado-PA</b>, 
+        buscando pedidos em farmácias, comércios, padarias, restaurantes, açaí, frango assado e muito mais.
+    </div>
+
+    <div class="footer-creditos">
+        Benaion Delivery © 2026 <br>
+        Laranjal do Jari - Monte Dourado
+    </div>
+</div>
+
+<script>
+    // CONFIGURAÇÃO FIREBASE
+    const firebaseConfig = {
+        apiKey: "AIzaSyBHokOvVml6hxvzJYVJX9ppx1Wr1mDn11g",
+        authDomain: "benaion-delivery.firebaseapp.com",
+        projectId: "benaion-delivery",
+        storageBucket: "benaion-delivery.firebasestorage.app",
+        messagingSenderId: "309927409217",
+        appId: "1:309927409217:web:10e7e2b951fa4ad0b1b8c0"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // FUNÇÕES DE LOGIN
+    function cadastrar() {
+        const e = document.getElementById('email').value;
+        const s = document.getElementById('senha').value;
+        auth.createUserWithEmailAndPassword(e, s).then(() => alert("Conta criada!")).catch(err => alert(err.message));
+    }
+    function login() {
+        const e = document.getElementById('email').value;
+        const s = document.getElementById('senha').value;
+        auth.signInWithEmailAndPassword(e, s).catch(err => alert("Erro ao entrar!"));
+    }
+    function logout() { auth.signOut(); }
+
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('user-info').style.display = 'block';
+            document.getElementById('user-email').innerText = user.email;
+        } else {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('user-info').style.display = 'none';
+        }
+    });
+
+    // ENVIO DE PEDIDO
+    function enviarPedido() {
+        const user = auth.currentUser;
+        if(!user) { alert("Faça login para pedir!"); return; }
+
+        const pedido = {
+            cliente: document.getElementById('cliente').value,
+            produto: document.getElementById('produto').value,
+            entrega: document.getElementById('entrega').value,
+            pagamento: document.getElementById('pagamento').value,
+            data: new Date().toLocaleString(),
+            uid: user.uid
         };
 
-        // Inicializar
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // Monitor de Usuário
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                document.getElementById('login-section').style.display = 'none';
-                document.getElementById('user-section').style.display = 'block';
-                document.getElementById('user-display').innerText = user.email;
-            } else {
-                document.getElementById('login-section').style.display = 'block';
-                document.getElementById('user-section').style.display = 'none';
-            }
+        db.collection("pedidos").add(pedido).then(() => {
+            const msg = `*PEDIDO BENAION*\nCliente: ${pedido.cliente}\nPedido: ${pedido.produto}\nPagamento: ${pedido.pagamento}`;
+            window.open(`https://wa.me/5596991677854?text=${encodeURIComponent(msg)}`, '_blank');
         });
+    }
 
-        function criarConta() {
-            const e = document.getElementById('email').value;
-            const s = document.getElementById('senha').value;
-            auth.createUserWithEmailAndPassword(e, s).then(() => alert("Conta criada!")).catch(m => alert(m.message));
-        }
-
-        function fazerLogin() {
-            const e = document.getElementById('email').value;
-            const s = document.getElementById('senha').value;
-            auth.signInWithEmailAndPassword(e, s).catch(m => alert("Erro: " + m.message));
-        }
-
-        function sair() { auth.signOut(); }
-
-        function salvarEPedir() {
-            const user = auth.currentUser;
-            if (!user) { alert("Faça login para pedir!"); return; }
-
-            const dados = {
-                cliente: document.getElementById('nome-cliente').value,
-                pedido: document.getElementById('texto-pedido').value,
-                email: user.email,
-                data: new Date().toLocaleString()
-            };
-
-            // SALVANDO NO BANCO
-            db.collection("pedidos_realizados").add(dados)
-            .then(() => {
-                alert("Pedido salvo no sistema!");
-                const msg = `Olá! Meu nome é ${dados.cliente}. Quero pedir: ${dados.pedido}`;
-                window.open(`https://wa.me/5596991677854?text=${encodeURIComponent(msg)}`);
-            })
-            .catch(err => {
-                console.error(err);
-                alert("Erro ao salvar! Verifique as REGRAS no Firebase.");
-            });
-        }
-    </script>
+    // AVALIAÇÃO
+    function votar(n) {
+        let s = "";
+        for(let i=0; i<5; i++) { s += (i < n) ? "★" : "☆"; }
+        document.getElementById('star-rating').innerHTML = s;
+        document.getElementById('voto-txt').innerText = "Obrigado por avaliar com " + n + " estrelas!";
+    }
+</script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benaion Delivery - Oficial</title>
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        :root { --vermelho: #bc0000; --amarelo: #f2b705; --fundo: #f4f4f4; --sucesso: #25d366; }
+        body { font-family: 'Arial', sans-serif; margin: 0; background: var(--fundo); color: #333; line-height: 1.6; scroll-behavior: smooth; }
+        
+        /* MENU NO TOPO */
+        nav { background: #1a1a1a; padding: 12px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; border-bottom: 3px solid var(--amarelo); overflow-x: auto; }
+        nav a { color: white; text-decoration: none; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; white-space: nowrap; }
+
+        header { background: var(--vermelho); color: white; padding: 40px 15px; text-align: center; border-bottom: 6px solid var(--amarelo); }
+        .logo-main { margin: 0; font-style: italic; font-weight: 900; color: var(--amarelo); font-size: 3rem; line-height: 1; text-shadow: 3px 3px 0px #000; letter-spacing: -2px; transform: skew(-5deg); }
+        
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; }
+        
+        /* ESTILO DOS CARDS ANTIGOS */
+        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-top: 5px solid var(--vermelho); }
+        h3 { color: var(--vermelho); margin-top: 0; border-bottom: 2px solid #f1f1f1; padding-bottom: 8px; text-transform: uppercase; font-size: 1.1rem; }
+        
+        /* LOGIN RÁPIDO */
+        .login-box input { width: 100%; padding: 10px; margin-bottom: 8px; border-radius: 8px; border: 1px solid #ddd; }
+        .btn-mini { background: #444; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer; font-size: 0.7rem; width: 48%; }
+
+        /* GRID DE PARCEIROS */
+        .flyer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .flyer-item { border-radius: 8px; border: 1px solid #ddd; overflow: hidden; background: #eee; }
+        .flyer-item img { width: 100%; display: block; }
+
+        /* FORMULÁRIO */
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.8rem; color: #444; }
+        input, textarea, select { width: 100%; padding: 14px; margin-top: 5px; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 1rem; }
+        
+        .btn-enviar { background: var(--sucesso); color: white; border: none; width: 100%; padding: 22px; border-radius: 50px; font-weight: bold; font-size: 1.4rem; cursor: pointer; margin-top: 25px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+        
+        /* AVALIAÇÃO */
+        .stars { color: var(--amarelo); font-size: 1.8rem; text-align: center; cursor: pointer; }
+
+        /* SEO FOOTER */
+        .seo-text { background: #fff; padding: 20px; border-radius: 15px; font-size: 0.85rem; color: #666; text-align: center; border: 1px solid #ddd; margin-top: 20px; }
+        .footer-creditos { text-align: center; color: #888; font-size: 0.8rem; padding: 20px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#inicio">Início</a>
+    <a href="#parceiros">Parceiros</a>
+    <a href="#comanda">Pedido</a>
+    <a href="#avaliar">Avaliar</a>
+</nav>
+
+<header id="inicio">
+    <h1 class="logo-main">BENAION</h1>
+    <p style="margin:0; letter-spacing: 5px; font-weight: bold;">DELIVERY</p>
+</header>
+
+<div class="container">
+    
+    <div class="card">
+        <h3>🔐 Área do Cliente</h3>
+        <div id="login-form">
+            <div class="login-box">
+                <input type="email" id="email" placeholder="Seu e-mail">
+                <input type="password" id="senha" placeholder="Sua senha">
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <button class="btn-mini" onclick="login()" style="background: var(--vermelho);">ENTRAR</button>
+                <button class="btn-mini" onclick="cadastrar()">CRIAR CONTA</button>
+            </div>
+        </div>
+        <div id="user-info" style="display:none; text-align:center;">
+            <p>Bem-vindo, <b id="user-email"></b></p>
+            <button class="btn-mini" onclick="logout()">SAIR</button>
+        </div>
+    </div>
+
+    <div class="card" id="parceiros">
+        <h3>📸 Parceiros e Promoções</h3>
+        <div class="flyer-grid">
+            <div class="flyer-item"><img src="https://i.postimg.cc/8z0Nnq3p/1000528495.png"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/mD8N0Wf4/1001408010.png"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/m26qYV3L/1001590674.png"></div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/mD0M9hCq/1001396230.png"></div>
+        </div>
+    </div>
+
+    <div class="card" id="comanda">
+        <h3>📝 Comanda de Pedido</h3>
+        <label>Seu Nome:</label>
+        <input type="text" id="cliente" placeholder="Quem está pedindo?">
+
+        <label>Produtos / Lista de Compras:</label>
+        <textarea id="produto" rows="4" placeholder="O que vamos buscar?"></textarea>
+
+        <label>Endereço de Entrega:</label>
+        <input type="text" id="entrega" placeholder="Rua, número e bairro">
+
+        <label>Pagamento:</label>
+        <select id="pagamento">
+            <option>PIX 💰</option>
+            <option>CARTÃO 💳</option>
+            <option>DINHEIRO 💵</option>
+        </select>
+
+        <button class="btn-enviar" onclick="enviarPedido()">ENVIAR PEDIDO 🛵</button>
+    </div>
+
+    <div class="card" id="avaliar">
+        <h3>⭐ Avalie nosso serviço</h3>
+        <div class="stars" id="star-rating">
+            <span onclick="votar(1)">☆</span><span onclick="votar(2)">☆</span><span onclick="votar(3)">☆</span><span onclick="votar(4)">☆</span><span onclick="votar(5)">☆</span>
+        </div>
+        <p id="voto-txt" style="text-align:center; font-size:0.8rem; color: #888;">Toque para avaliar</p>
+    </div>
+
+    <div class="seo-text">
+        A <b>Benaion Delivery</b> realiza entregas rápidas em <b>Laranjal do Jari-AP</b> e <b>Monte Dourado-PA</b>, 
+        buscando pedidos em farmácias, comércios, padarias, restaurantes, açaí, frango assado e muito mais.
+    </div>
+
+    <div class="footer-creditos">
+        Benaion Delivery © 2026 <br>
+        Laranjal do Jari - Monte Dourado
+    </div>
+</div>
+
+<script>
+    // CONFIGURAÇÃO FIREBASE
+    const firebaseConfig = {
+        apiKey: "AIzaSyBHokOvVml6hxvzJYVJX9ppx1Wr1mDn11g",
+        authDomain: "benaion-delivery.firebaseapp.com",
+        projectId: "benaion-delivery",
+        storageBucket: "benaion-delivery.firebasestorage.app",
+        messagingSenderId: "309927409217",
+        appId: "1:309927409217:web:10e7e2b951fa4ad0b1b8c0"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // FUNÇÕES DE LOGIN
+    function cadastrar() {
+        const e = document.getElementById('email').value;
+        const s = document.getElementById('senha').value;
+        auth.createUserWithEmailAndPassword(e, s).then(() => alert("Conta criada!")).catch(err => alert(err.message));
+    }
+    function login() {
+        const e = document.getElementById('email').value;
+        const s = document.getElementById('senha').value;
+        auth.signInWithEmailAndPassword(e, s).catch(err => alert("Erro ao entrar!"));
+    }
+    function logout() { auth.signOut(); }
+
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('user-info').style.display = 'block';
+            document.getElementById('user-email').innerText = user.email;
+        } else {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('user-info').style.display = 'none';
+        }
+    });
+
+    // ENVIO DE PEDIDO
+    function enviarPedido() {
+        const user = auth.currentUser;
+        if(!user) { alert("Faça login para pedir!"); return; }
+
+        const pedido = {
+            cliente: document.getElementById('cliente').value,
+            produto: document.getElementById('produto').value,
+            entrega: document.getElementById('entrega').value,
+            pagamento: document.getElementById('pagamento').value,
+            data: new Date().toLocaleString(),
+            uid: user.uid
+        };
+
+        db.collection("pedidos").add(pedido).then(() => {
+            const msg = `*PEDIDO BENAION*\nCliente: ${pedido.cliente}\nPedido: ${pedido.produto}\nPagamento: ${pedido.pagamento}`;
+            window.open(`https://wa.me/5596991677854?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+    }
+
+    // AVALIAÇÃO
+    function votar(n) {
+        let s = "";
+        for(let i=0; i<5; i++) { s += (i < n) ? "★" : "☆"; }
+        document.getElementById('star-rating').innerHTML = s;
+        document.getElementById('voto-txt').innerText = "Obrigado por avaliar com " + n + " estrelas!";
+    }
+</script>
+</body>
+</html>
+
 
