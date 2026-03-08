@@ -326,51 +326,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("Modo Administrador Ativado!");
             }
         });
-    }
-})function enviarWhatsApp() {
-    const cliente = document.getElementById('cliente').value.trim();
-    const retirada = document.getElementById('retirada').value.trim();
-    const produto = document.getElementById('produto').value.trim();
-    const entrega = document.getElementById('entrega').value.trim();
-    const pagamento = document.getElementById('pagamento').value;
-    const obs = document.getElementById('obs').value.trim() || "Não precisa";
+    const telefone = "5596991677854";
+        const msg = `*✅️ COMANDA Nº ${n} 🗒*\n\n` +
+                    `*CLIENTE🙋‍♂️*:\n${document.getElementById('cliente').value}\n\n` +
+                    `*RETIRADA🛒*:\n${document.getElementById('retirada').value}\n\n` +
+                    `*PRODUTOS📦*:\n${document.getElementById('produto').value}\n\n` +
+                    `*ENTREGA🏡*:\n${document.getElementById('entrega').value}\n\n` +
+                    `*PAGAMENTO💰*:\n${document.getElementById('pagamento').value}\n\n` +
+                    `*OBS/TROCO*:\n${document.getElementById('obs').value}\n\n` +
+                    `_Enviado via Benaion Online_`;
 
-    if(!cliente || !retirada || !produto || !entrega) {
-        alert("Por favor, preencha os campos obrigatórios!");
-        return;
-    }
-
-    const numComanda = obterProximoNumeroComanda();
-
-    // Corrigido: Uma única crase no início e outra no final de todo o bloco de texto
-    const msg = `*>>>>INICIO DE COMANDA🗒<<<<<<*%0A%0A` +
-                `(Obs: escreva em baixo do comando, no espaço em branco)%0A%0A` +
-                `> _*CLIENTE🙋‍♂️*_:
-                %0A${cliente}%0A%0A` +
-                `> *ENTREGADOR🛵 :
-                *%0A%0A` +
-                `> _*ENDEREÇO DE RETIRADA🛒*_:
-                %0A${retirada}%0A%0A` +
-                `> _*QUAL PRODUTO* _:
-                %0A${produto}%0A%0A` +
-                `> _*ENDEREÇO DE ENTREGA (bairro, rua, numero)🏡*_:
-                %0A${entrega}%0A%0A` +
-                `> _*FORMA DE PAGAMENTO💰*_:
-                %0A${pagamento}%0A%0A` +
-                `> _*TROCO💱*_:
-                %0A${obs}%0A%0A` +
-                `> _*Agendar para às*_:
-                %0A%0A` +
-                `> *OBSERVAÇÕES:
-                *%0A%0A%0A` +
-                `*<<<<FIM DE COMANDA>>>>*`;
-
-    const link = `https://wa.me/5596991677854?text=${msg}`;
-    window.open(link, '_blank');
-}
-
-
-
+        window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`, '_blank');
 function resetarContador() {
     const senha = prompt("Senha do Administrador:");
     if(senha === "1234") { 
