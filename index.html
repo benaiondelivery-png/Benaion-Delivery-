@@ -345,15 +345,24 @@ document.addEventListener("DOMContentLoaded", function() {
     // Corrigido: Uma única crase no início e outra no final de todo o bloco de texto
     const msg = `*>>>>INICIO DE COMANDA🗒<<<<<<*%0A%0A` +
                 `(Obs: escreva em baixo do comando, no espaço em branco)%0A%0A` +
-                `> _*CLIENTE🙋‍♂️*_:%0A${cliente}%0A%0A` +
-                `> *ENTREGADOR🛵 :*%0A%0A` +
-                `> _*ENDEREÇO DE RETIRADA🛒*_:%0A${retirada}%0A%0A` +
-                `> _*QUAL PRODUTO* _:%0A${produto}%0A%0A` +
-                `> _*ENDEREÇO DE ENTREGA (bairro, rua, numero)🏡*_:%0A${entrega}%0A%0A` +
-                `> _*FORMA DE PAGAMENTO💰*_:%0A${pagamento}%0A%0A` +
-                `> _*TROCO💱*_:%0A${obs}%0A%0A` +
-                `> _*Agendar para às*_: %0A%0A` +
-                `> *OBSERVAÇÕES:*%0A%0A%0A` +
+                `> _*CLIENTE🙋‍♂️*_:
+                %0A${cliente}%0A%0A` +
+                `> *ENTREGADOR🛵 :
+                *%0A%0A` +
+                `> _*ENDEREÇO DE RETIRADA🛒*_:
+                %0A${retirada}%0A%0A` +
+                `> _*QUAL PRODUTO* _:
+                %0A${produto}%0A%0A` +
+                `> _*ENDEREÇO DE ENTREGA (bairro, rua, numero)🏡*_:
+                %0A${entrega}%0A%0A` +
+                `> _*FORMA DE PAGAMENTO💰*_:
+                %0A${pagamento}%0A%0A` +
+                `> _*TROCO💱*_:
+                %0A${obs}%0A%0A` +
+                `> _*Agendar para às*_:
+                %0A%0A` +
+                `> *OBSERVAÇÕES:
+                *%0A%0A%0A` +
                 `*<<<<FIM DE COMANDA>>>>*`;
 
     const link = `https://wa.me/5596991677854?text=${msg}`;
