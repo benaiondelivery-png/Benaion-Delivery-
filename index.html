@@ -347,7 +347,7 @@ function enviarWhatsApp() {
     const numComanda = obterProximoNumeroComanda();
 
     // Monta a mensagem para o WhatsApp
-    const msg = `*BENAION DELIVERY - PEDIDO #${numComanda}*%0A` +
+    const msg = "`*BENAION DELIVERY - PEDIDO #${numComanda}*%0A` +
                 `----------------------------%0A` +
                 `*Cliente:* ${cliente}%0A` +
                 `*Retirada:* ${retirada}%0A` +
@@ -355,7 +355,7 @@ function enviarWhatsApp() {
                 `*Destino:* ${entrega}%0A` +
                 `*Pagamento:* ${pagamento}%0A` +
                 `*OBS:* ${obs}%0A` +
-                `----------------------------`;
+                `----------------------------";
 
     // Substitua o X pelo seu número de telefone
     const link = `https://wa.me/5596991677854?text=${msg}`;
