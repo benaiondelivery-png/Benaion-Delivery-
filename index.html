@@ -337,7 +337,7 @@ function enviarWhatsApp() {
     const entrega = document.getElementById('entrega').value;
     const pagamento = document.getElementById('pagamento').value;
     const obs = document.getElementById('obs').value;
-
+document.getElementById('obs').value || "Não precisa";
     if(!cliente || !retirada || !produto || !entrega) {
         alert("Por favor, preencha os campos obrigatórios!");
         return;
@@ -347,14 +347,14 @@ function enviarWhatsApp() {
     const numComanda = obterProximoNumeroComanda();
 
     // Monta a mensagem para o WhatsApp
-    const msg = `*BENAION DELIVERY - PEDIDO #${numComanda}*%0A` 
-                `----------------------------%0A` 
-                `*Cliente:* ${cliente}%0A` 
-                `*Retirada:* ${retirada}%0A` 
-                `*Produtos:* ${produto}%0A` 
-                `*Destino:* ${entrega}%0A` 
-                `*Pagamento:* ${pagamento}%0A` 
-                `*OBS:* ${obs}%0A` 
+    const msg = `*BENAION DELIVERY - PEDIDO #${numComanda}*%0A` +
+                `----------------------------%0A` +
+                `*Cliente:%0A$* ${cliente}%0A` +
+              `*Retirada:%0A$* ${retirada}%0A` +
+              `*Produtos:%0A$* ${produto}%0A` +
+                `*Destino:%0A$* ${entrega}%0A` +
+              `*Pagamento:%0A$* ${pagamento}%0A` +
+                `*OBS:%0A$* ${obs}%0A%0A%0A` +
                 `----------------------------`;
 
     // Substitua o X pelo seu número de telefone
