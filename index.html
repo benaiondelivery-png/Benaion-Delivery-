@@ -328,40 +328,26 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
-function enviarWhatsApp() {
-    // Pegando os valores dos campos do site
-    const cliente = document.getElementById('cliente').value;
-    const retirada = document.getElementById('retirada').value;
-    const produto = document.getElementById('produto').value;
-    const entrega = document.getElementById('entrega').value;
-    const pagamento = document.getElementById('pagamento').value;
-    const troco = document.getElementById('obs').value || "Não precisa"; // Usa o campo obs para o troco
 
-    // Validação
+function enviarWhatsApp() {
+    // Validação básica dos campos atuais
+    const cliente = document.getElementById("cliente").value;
+    const retirada = document.getElementById("retirada").value;
+    const produto = document.getElementById("produto").value;
+    const entrega = document.getElementById("entrega").value;
+    const pagamento = document.getElementById("pagamento").value;
+    const obs = document.getElementById("obs").value;
+
     if(!cliente || !retirada || !produto || !entrega) {
         alert("Por favor, preencha os campos obrigatórios!");
         return;
     }
 
-    // Montagem da mensagem EXATAMENTE como você pediu
-    // %0A é a quebra de linha para o WhatsApp
-    const msg = `*>>>>INICIO DE COMANDA🗒<<<<<<*%0A%0A` +
-                `(Obs: escreva em baixo do comando, no espaço em branco)%0A%0A` +
-                `> _*CLIENTE🙋‍♂️*_: ${cliente}%0A%0A` +
-                `> *ENTREGADOR🛵 :*%0A%0A` + // Fica vazio para a atendente
-                `> _*ENDEREÇO DE RETIRADA🛒*_: ${retirada}%0A%0A` +
-                `> _*QUAL PRODUTO* _: ${produto}%0A%0A` +
-                `> _*ENDEREÇO DE ENTREGA (bairro, rua, numero)🏡*_: ${entrega}%0A%0A` +
-                `> _*FORMA DE PAGAMENTO💰*_: ${pagamento}%0A%0A` +
-                `> _*TROCO💱*_: ${troco}%0A%0A` +
-                `> _*Agendar para às*_: %0A%0A` +
-                `> *OBSERVAÇÕES:*%0A%0A%0A` +
-                `*<<<<FIM DE COMANDA>>>>*`;
+    // Gera o número da comanda para esta mensagem
+    const numComanda = obterProximoNumeroComanda();
 
-    const link = `https://wa.me/5596991677854?text=${msg}`;
-    window.open(link, '_blank');
-}
-
+    // Monta a mensagem para o WhatsApp
+    const msg
 
 function resetarContador() {
     const senha = prompt("Senha do Administrador:");
