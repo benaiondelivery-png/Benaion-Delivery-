@@ -326,17 +326,45 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("Modo Administrador Ativado!");
             }
         });
-    const telefone = "5596991677854";
-        const msg = `*✅️ COMANDA Nº ${n} 🗒*\n\n` +
-                    `*CLIENTE🙋‍♂️*:\n${document.getElementById('cliente').value}\n\n` +
-                    `*RETIRADA🛒*:\n${document.getElementById('retirada').value}\n\n` +
-                    `*PRODUTOS📦*:\n${document.getElementById('produto').value}\n\n` +
-                    `*ENTREGA🏡*:\n${document.getElementById('entrega').value}\n\n` +
-                    `*PAGAMENTO💰*:\n${document.getElementById('pagamento').value}\n\n` +
-                    `*OBS/TROCO*:\n${document.getElementById('obs').value}\n\n` +
-                    `_Enviado via Benaion Online_`;
+    }
+});
 
-        window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(msg)}`, '_blank');
+function enviarWhatsApp() {
+    // Validação básica dos campos atuais
+    const cliente = document.getElementById('cliente').value;
+    const retirada = document.getElementById('retirada').value;
+    const produto = document.getElementById('produto').value;
+    const entrega = document.getElementById('entrega').value;
+    const pagamento = document.getElementById('pagamento').value;
+    const obs = document.getElementById('obs').value;
+
+    if(!cliente || !retirada || !produto || !entrega) {
+        alert("Por favor, preencha os campos obrigatórios!");
+        return;
+    }
+
+    // Gera o número da comanda para esta mensagem
+    const numComanda = obterProximoNumeroComanda();
+
+    // Monta a mensagem para o WhatsApp
+    const msg = "`*INICIO DE COMANDA" #${numComanda}*%0A` 
+                `----------------------------%0A` 
+                `*Cliente:
+      ${cliente}%0A` 
+                `*Retirada: ${retirada}%0A` 
+                `*Produtos: ${produto}%0A` 
+                `*Destino:* ${entrega}%0A` 
+                `*Pagamento:
+      * ${pagamento}%0A` 
+                `*OBS:*
+      ${obs}%0A` 
+                `----------------------------";
+
+    // Substitua o X pelo seu número de telefone
+    const link = `https://wa.me/5596991677854?text=${msg}`;
+    window.open(link, '_blank');
+}
+
 function resetarContador() {
     const senha = prompt("Senha do Administrador:");
     if(senha === "1234") { 
@@ -350,3 +378,5 @@ function resetarContador() {
 </script>
 </body>
 </html
+
+
