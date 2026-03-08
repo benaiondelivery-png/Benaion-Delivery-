@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <title>Benaion Delivery - Oficial</title>
     <style>
@@ -81,33 +81,34 @@
         .info-list li { margin-bottom: 10px; padding-left: 28px; position: relative; font-size: 0.95rem; }
         .info-list li::before { content: '✅'; position: absolute; left: 0; }
         
-        .proibido { 80px 88
+        .proibido { 
             color: #721c24; font-size: 0.85rem; background: #f8d7da; 
             padding: 12px; border-radius: 8px; border: 1px solid #f5c6cb; margin-top: 15px;
         }
-.flyer-grid {
-    display: flex; /* Mantém lado a lado */
-    flex-wrap: nowrap; /* IMPEDE que as fotos caiam para a linha de baixo */
-    overflow-x: auto; /* Ativa o deslize para os lados */
-    gap: 12px;
-    padding: 10px;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-}
+        
+        .flyer-grid {
+            display: flex; /* Mantém lado a lado */
+            flex-wrap: nowrap; /* IMPEDE que as fotos caiam para a linha de baixo */
+            overflow-x: auto; /* Ativa o deslize para os lados */
+            gap: 12px;
+            padding: 10px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
 
-.flyer-item { 
-    flex: 0 0 160px; /* Impede que a foto encolha, mantendo 160px de largura */
-    border-radius: 10px; 
-    overflow: hidden; 
-    border: 1px solid #eee;
-}
+        .flyer-item { 
+            flex: 0 0 160px; /* Impede que a foto encolha, mantendo 160px de largura */
+            border-radius: 10px; 
+            overflow: hidden; 
+            border: 1px solid #eee;
+        }
 
         .flyer-item:hover { transform: scale(1.00); }
-        .flyer-item img { width: 100%; height: free; display: flex; }
+        .flyer-item img { width: 100%; height: auto; display: flex; } /* Ajustado o height: free para auto */
 
         .form-group { margin-bottom: 18px; }
         label { display: block; margin-bottom: 6px; font-weight: bold; font-size: 0.8rem; color: #555; text-transform: uppercase; }
-        input, textarea, select { width: 100%; padding: 14px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem; }
+        input, textarea, select { width: 100%; padding: 14px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem; box-sizing: border-box; }
         
         .btn-enviar { 
             background: var(--sucesso); color: white; border: none; width: 100%; 
@@ -116,34 +117,36 @@
         }
 
         /* WHATSAPP FLUTUANTE */
-      /* Botão Flutuante do WhatsApp */
-.whatsapp-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: #25d366;
-    color: white;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 35px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-    z-index: 9999; /* Garante que fique por cima de tudo */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: transform 0.3s;
-}
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 9999; /* Garante que fique por cima de tudo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
 
-.whatsapp-btn:hover {
-    transform: scale(1.1); /* Efeito de aumentar ao tocar */
-    color: white;
-}
+        .whatsapp-btn:hover {
+            transform: scale(1.1); /* Efeito de aumentar ao tocar */
+            color: white;
+        }
 
-      #btn-admin { display: none; background: #333; color: #fff; border: none; padding: 12px; width: 100%; border-radius: 8px; margin-top: 15px; font-size: 0.8rem; cursor: pointer; }
+        #btn-admin { display: none; background: #333; color: #fff; border: none; padding: 12px; width: 100%; border-radius: 8px; margin-top: 15px; font-size: 0.8rem; cursor: pointer; }
         .footer { text-align: center; color: #999; font-size: 0.8rem; padding: 40px 15px; }
+        
+        /* Classe para o asterisco vermelho */
+        .obrig { color: red; font-size: 1rem; }
    </style>
 </head>
 <body>
@@ -156,7 +159,7 @@
 </nav>
 
 <header>
-    <div onclick="ativarAdmin()">
+    <div onclick="contarCliques()">
         <h1 class="logo-main">BENAION</h1>
         <p style="margin:0; letter-spacing: 5px; font-weight: bold;">DELIVERY</p>
         <p style="font-style: italic; font-size: 0.9rem;">Conectando você ao que precisa, rápido e seguro</p>
@@ -185,25 +188,25 @@
         <div class="accordion-item">
             <button class="accordion-header" onclick="toggleAccordion('acc1')">Bairro <span>+</span></button>
             <div id="acc1" class="accordion-content">    
-  <ul>          
- <li>Agreste R$:5,00</li>
- <li>Nova esperança R$:5,00</li>
- <li>Prosperidade R$:5,00</li>
- <li> Castanheira R$:5,00</<li>
- <li>Cajari R$:6,00</li>
- <li> Rodovia do gogó R$:7,00</li>
- <li>buritizal R$:7,00</li>
- <li>Sarney R$:7,00</li>
-<li>Nazaré mineiro R$:10,00</li>
- <li>centro R$:6,00</li>
-    <li>centro-beira rio R$:7,00</li>
- <li>mirilandia R$:5,00</li>
- <li>Rio branco R$:7,00</li>
- <li>José cesário R$:5,00</li>
- <li>Malvinas R$:8,00</li>
- <li>samaúma R$:12,00</li>
- <li>monte dourado R$:30,00</li> 
-  </ul>       
+                <ul>          
+                 <li>Agreste R$:5,00</li>
+                 <li>Nova esperança R$:5,00</li>
+                 <li>Prosperidade R$:5,00</li>
+                 <li> Castanheira R$:5,00</li>
+                 <li>Cajari R$:6,00</li>
+                 <li> Rodovia do gogó R$:7,00</li>
+                 <li>buritizal R$:7,00</li>
+                 <li>Sarney R$:7,00</li>
+                 <li>Nazaré mineiro R$:10,00</li>
+                 <li>centro R$:6,00</li>
+                 <li>centro-beira rio R$:7,00</li>
+                 <li>mirilandia R$:5,00</li>
+                 <li>Rio branco R$:7,00</li>
+                 <li>José cesário R$:5,00</li>
+                 <li>Malvinas R$:8,00</li>
+                 <li>samaúma R$:12,00</li>
+                 <li>monte dourado R$:30,00</li> 
+                </ul>       
             </div>
         </div>   
        <div class="accordion-item">
@@ -213,58 +216,65 @@
 
         <div class="accordion-item">
             <button class="accordion-header" onclick="toggleAccordion('acc3')">Esforço Extra <span>+</span></button>
-            <div id="acc3" class="accordion-content"><p> adicional para entrar em ponte: 0,05R$ por metro( medido pelo google maps.</p>
-           <p> •para subir escada:2,00R$ por andar</p> </div>
+            <div id="acc3" class="accordion-content">
+                <p>adicional para entrar em ponte: 0,05R$ por metro( medido pelo google maps).</p>
+                <p>• para subir escada: 2,00R$ por andar</p> 
+            </div>
         </div>
       
-<div class="accordion-item">
-  <button class= "accordion-header" onclick="toggleAccordion('acc4')
-    ">Quantidade de produtos <span>+</span></button>
-  
-  <div id="acc4" class="accordion-content"> medido pela bag de 45lt:
-<p> •menos da metade da bag (grátis) </p>
-<p>•Metade R$2,00</p>
-<p>•cheia R$5,00</p>
-  </div>
-</div>
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion('acc4')">Quantidade de produtos <span>+</span></button>
+          
+          <div id="acc4" class="accordion-content"> medido pela bag de 45lt:
+            <p>• menos da metade da bag (grátis)</p>
+            <p>• Metade R$2,00</p>
+            <p>• cheia R$5,00</p>
+          </div>
+        </div>
+    </div>
+        
     <div id="cobertura" class="card" style="display: flex; justify-content: space-between; border-top: 5px solid var(--amarelo);">
         <div><span style="font-size:0.7rem; color:#888;">COBERTURA</span><br><b>Laranjal do Jari / Monte Dourado</b></div>
         <div style="text-align: right;"><span style="font-size:0.7rem; color:#888;">HORÁRIO</span><br><b>07:30 às 18:00 (Dom-Sex)</b></div>
     </div>
-<div class="card">
+    
+    <div class="card">
         <h3>📸 Promoções e Parceiros</h3>
         <div class="flyer-grid">
             <div class="flyer-item"><img src="https://i.postimg.cc/XJwXkcfP/Post_para_Instagram_Encomende_seu_Frango_Assado_Gastronômico_Marrom_20250910_122450_0000.png" alt="Frango"></div>
             <div class="flyer-item"><img src="https://i.postimg.cc/L525CYvJ/Post_Instagram_açaí_entrega_grátis_simples_roxo_20260122_073356_0000.png" alt="Açaí"></div>
             <div class="flyer-item"><img src="https://i.postimg.cc/Y0M0nG8j/Marrom_Pão_Cesta_Padaria_Cardápio_20260213_053737_0000.png" alt="Pão"></div>
             <div class="flyer-item"><img src="https://i.postimg.cc/cHQ6BM7S/Cardápio_marmitex_almoço_restaurante_moderno_amarelo_marrom_instagram_story_20260123_110156_0000.png" alt="Marmitex"></div>  
-         <div class="flyer-item"><img src="https://i.postimg.cc/bvPKpJCF/1_20260204_161355_0000.png"> </div>         
-</div>
+            <div class="flyer-item"><img src="https://i.postimg.cc/bvPKpJCF/1_20260204_161355_0000.png"></div>         
+        </div>
+    </div>
+
     <div id="pedido" class="card">
         <h3>📝 Comanda de Pedido</h3>
         
         <div class="form-group">
-            <label>Seu Nome:</label>
-            <input type="text" id="cliente" placeholder="Nome completo">
+            <label>Seu Nome: <span class="obrig">*</span></label>
+            <input type="text" id="cliente" placeholder="Apenas nomes de pessoas. Ex: João Silva">
         </div>
+        
         <div class="form-group">
-            <label>Onde buscamos? (Retirada):</label>
+            <label>Onde buscamos? (Retirada): <span class="obrig">*</span></label>
             <textarea id="retirada" rows="2" placeholder="Nome do local ou endereço comercial"></textarea>
         </div>
       
         <div class="form-group">
-            <label>O que vamos buscar? (Produtos):</label>
-            <textarea id="produto" rows="4" placeholder="Ex: 1 Frango assado, 2 cocas 2L..."></textarea>
+            <label>O que vamos buscar? (Produtos): <span class="obrig">*</span></label>
+            <textarea id="produto" rows="4" placeholder="Descrição. Ex: 1 Frango assado, 2 cocas 2L..."></textarea>
         </div>
 
         <div class="form-group">
-            <label>Onde entregamos? (Destino):</label>
-            <textarea id="entrega" rows="2" placeholder="Rua, número e bairro"></textarea>
+            <label>Onde entregamos? (Destino): <span class="obrig">*</span></label>
+            <textarea id="entrega" rows="2" placeholder="Rua, Bairro, Número e Referência"></textarea>
         </div>
 
         <div class="form-group">
-            <label>Forma de Pagamento:</label>
-            <select id="pagamento">
+            <label>Forma de Pagamento: <span class="obrig">*</span></label>
+            <select id="pagamento" onchange="verificarTroco()">
                 <option value="PIX 💰">PIX (Mais rápido)</option>
                 <option value="CARTÃO 💳">Cartão (Levamos a máquina)</option>
                 <option value="DINHEIRO 💵">Dinheiro</option>
@@ -272,8 +282,8 @@
         </div>
 
         <div class="form-group">
-            <label>Observações / Troco:</label>
-            <textarea id="obs" rows="2" placeholder="Ex: Troco para 50, deixar na portaria..."></textarea>
+            <label id="label-obs">Observações / Troco:</label>
+            <textarea id="obs" rows="2" placeholder="Ex: Precisa de troco? Deixar na portaria..."></textarea>
         </div>
 
         <button class="btn-enviar" onclick="enviarWhatsApp()">ENVIAR PARA WHATSAPP 🛵</button>
@@ -285,98 +295,5 @@
         Excelência em logística urbana desde 2023.
     </div>
 </div>
-<a href="https://wa.me/5596991677854?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20pedido." class="whatsapp-btn" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
 
-
-<script>
-  // Função para abrir/fechar as taxas (Accordion)
-function toggleAccordion(id) {
-    const content = document.getElementById(id);
-    if (content) {
-        const isOpen = content.style.display === "block";
-        // Fecha todos antes de abrir o novo
-        document.querySelectorAll('.accordion-content').forEach(el => el.style.display = 'none');
-        content.style.display = isOpen ? "none" : "block";
-    }
-}
-   // Variável para controle de cliques no admin
-let cliquesAdmin = 0;
-
-// Função para gerar/recuperar o número da comanda
-function obterProximoNumeroComanda() {
-    let n = localStorage.getItem('n_ped_benaion');
-    if (!n) {
-        n = 0;
-    }
-    n = parseInt(n) + 1;
-    localStorage.setItem('n_ped_benaion', n);
-    return n.toString().padStart(3, '0'); // Ex: 001, 002
-}
-
-// Configura o evento de clique na logo assim que o site carrega
-document.addEventListener("DOMContentLoaded", function() {
-    const logo = document.querySelector('.logo-main');
-    if(logo) {
-        logo.addEventListener('click', function() {
-            cliquesAdmin++;
-            if(cliquesAdmin >= 3) {
-                document.getElementById('btn-admin').style.display = 'block';
-                alert("Modo Administrador Ativado!");
-            }
-        });
-    }
-});
-
-function enviarWhatsApp() {
-    // Validação básica dos campos atuais
-    const cliente = document.getElementById('cliente').value;
-    const retirada = document.getElementById('retirada').value;
-    const produto = document.getElementById('produto').value;
-    const entrega = document.getElementById('entrega').value;
-    const pagamento = document.getElementById('pagamento').value;
-    const obs = document.getElementById('obs').value;
-
-    if(!cliente || !retirada || !produto || !entrega) {
-        alert("Por favor, preencha os campos obrigatórios!");
-        return;
-    }
-
-    // Gera o número da comanda para esta mensagem
-    const numComanda = obterProximoNumeroComanda();
-
-    // Monta a mensagem para o WhatsApp
-    const msg = "`*INICIO DE COMANDA" #${numComanda}*%0A` 
-                `----------------------------%0A` 
-                `*Cliente:
-      ${cliente}%0A` 
-                `*Retirada: ${retirada}%0A` 
-                `*Produtos: ${produto}%0A` 
-                `*Destino:* ${entrega}%0A` 
-                `*Pagamento:
-      * ${pagamento}%0A` 
-                `*OBS:*
-      ${obs}%0A` 
-                `----------------------------";
-
-    // Substitua o X pelo seu número de telefone
-    const link = `https://wa.me/5596991677854?text=${msg}`;
-    window.open(link, '_blank');
-}
-
-function resetarContador() {
-    const senha = prompt("Senha do Administrador:");
-    if(senha === "1234") { 
-        localStorage.setItem('n_ped_benaion', 0);
-        alert("Contador reiniciado! O próximo pedido será o #001.");
-        location.reload();
-    } else {
-        alert("Senha incorreta!");
-    }
-}
-</script>
-</body>
-</html
-
-
+<a href="
