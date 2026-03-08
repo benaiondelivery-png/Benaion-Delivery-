@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+jo<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -81,7 +81,7 @@
         .info-list li { margin-bottom: 10px; padding-left: 28px; position: relative; font-size: 0.95rem; }
         .info-list li::before { content: '✅'; position: absolute; left: 0; }
         
-        .proibido { 80px 88
+        .proibido { 80px 
             color: #721c24; font-size: 0.85rem; background: #f8d7da; 
             padding: 12px; border-radius: 8px; border: 1px solid #f5c6cb; margin-top: 15px;
         }
@@ -330,21 +330,24 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function enviarWhatsApp() {
-    const cliente = document.getElementById('cliente').value;
-    const retirada = document.getElementById('retirada').value;
-    const produto = document.getElementById('produto').value;
-    const entrega = document.getElementById('entrega').value;
+    // 1. Captura os valores dos campos
+    const cliente = document.getElementById('cliente').value.trim();
+    const retirada = document.getElementById('retirada').value.trim();
+    const produto = document.getElementById('produto').value.trim();
+    const entrega = document.getElementById('entrega').value.trim();
     const pagamento = document.getElementById('pagamento').value;
-    const obs = document.getElementById('obs').value || "Não precisa";
+    const obs = document.getElementById('obs').value.trim() || "Não precisa";
 
+    // 2. Validação de campos obrigatórios
     if(!cliente || !retirada || !produto || !entrega) {
         alert("Por favor, preencha os campos obrigatórios!");
         return;
     }
 
+    // 3. Obtém o número da comanda
     const numComanda = obterProximoNumeroComanda();
 
-    // Montamos o texto primeiro em uma variável limpa
+    // 4. Monta o corpo da mensagem (Usando quebras de linha reais)
     const textoComanda = `*>>>>INICIO DE COMANDA🗒 PEDIDO #${numComanda}<<<<<<*\n\n` +
                 `(Obs: escreva em baixo do comando, no espaço em branco)\n\n` +
                 `> _*CLIENTE🙋‍♂️*_:\n${cliente}\n\n` +
@@ -358,45 +361,15 @@ function enviarWhatsApp() {
                 `> *OBSERVAÇÕES:*\n\n\n` +
                 `*<<<<FIM DE COMANDA>>>>*`;
 
-    // O encodeURIComponent garante que o '#' e os emojis cheguem inteiros
-    const link = `https://wa.me/5596991677854?text=${encodeURIComponent(textoComanda)}`;
+    // 5. O SEGREDO: encodeURIComponent transforma o texto em um link seguro
+    // Isso evita que o link "quebre" no meio da frase
+    const mensagemFinal = encodeURIComponent(textoComanda);
+    const link = `https://wa.me/5596991677854?text=${mensagemFinal}`;
     
+    // 6. Abre o WhatsApp
     window.open(link, '_blank');
 }
-function enviarWhatsApp() {
-    const cliente = document.getElementById('cliente').value;
-    const retirada = document.getElementById('retirada').value;
-    const produto = document.getElementById('produto').value;
-    const entrega = document.getElementById('entrega').value;
-    const pagamento = document.getElementById('pagamento').value;
-    const obs = document.getElementById('obs').value || "Não precisa";
 
-    if(!cliente || !retirada || !produto || !entrega) {
-        alert("Por favor, preencha os campos obrigatórios!");
-        return;
-    }
-
-    const numComanda = obterProximoNumeroComanda();
-
-    // Montamos o texto primeiro em uma variável limpa
-    const textoComanda = `*>>>>INICIO DE COMANDA🗒 PEDIDO #${numComanda}<<<<<<*\n\n` +
-                `(Obs: escreva em baixo do comando, no espaço em branco)\n\n` +
-                `> _*CLIENTE🙋‍♂️*_:\n${cliente}\n\n` +
-                `> *ENTREGADOR🛵 :*\n\n` +
-                `> _*ENDEREÇO DE RETIRADA🛒*_:\n${retirada}\n\n` +
-                `> _*QUAL PRODUTO* _:\n${produto}\n\n` +
-                `> _*ENDEREÇO DE ENTREGA (bairro, rua, numero)🏡*_:\n${entrega}\n\n` +
-                `> _*FORMA DE PAGAMENTO💰*_:\n${pagamento}\n\n` +
-                `> _*TROCO💱*_:\n${obs}\n\n` +
-                `> _*Agendar para às*_: \n\n` +
-                `> *OBSERVAÇÕES:*\n\n\n` +
-                `*<<<<FIM DE COMANDA>>>>*`;
-
-    // O encodeURIComponent garante que o '#' e os emojis cheguem inteiros
-    const link = `https://wa.me/5596991677854?text=${encodeURIComponent(textoComanda)}`;
-    
-    window.open(link, '_blank');
-}
 
 function resetarContador() {
     const senha = prompt("Senha do Administrador:");
